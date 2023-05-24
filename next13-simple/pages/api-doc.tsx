@@ -21,6 +21,11 @@ export const getStaticProps: GetStaticProps = async () => {
         title: 'Next Swagger API Example',
         version: '1.0',
       },
+      servers: [
+        {
+        url: 'http://localhost:3000', // Replace with your server URL
+        },
+        ],
     },
   });
 

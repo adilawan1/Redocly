@@ -4,13 +4,68 @@
     "title": "Next Swagger API Example",
     "version": "1.0"
   },
+  "servers": [
+    {
+      "url": "http://localhost:3000"
+    }
+  ],
   "paths": {
+    "/api/cancel": {
+      "patch": {
+        "description": "Cancels an order",
+        "responses": {
+          "200": {
+            "description": "Cancels an order"
+          }
+        }
+      }
+    },
+    "/api/create": {
+      "post": {
+        "description": "Creates an order",
+        "responses": {
+          "200": {
+            "description": "Creates an order"
+          }
+        }
+      }
+    },
     "/api/hello": {
       "get": {
         "description": "Returns the hello world",
         "responses": {
           "200": {
             "description": "hello world"
+          }
+        }
+      }
+    },
+    "/api/order": {
+      "get": {
+        "description": "Returns an order",
+        "responses": {
+          "200": {
+            "description": "Returns an order"
+          }
+        }
+      }
+    },
+    "/api/orders": {
+      "get": {
+        "description": "Returns all the orders",
+        "responses": {
+          "200": {
+            "description": "Returns all the orders"
+          }
+        }
+      }
+    },
+    "/api/update": {
+      "patch": {
+        "description": "Updates an order",
+        "responses": {
+          "200": {
+            "description": "Updates an order"
           }
         }
       }
@@ -54,6 +109,45 @@
   },
   "components": {
     "schemas": {
+      "Organization": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Organization.id"
+          },
+          "company": {
+            "$ref": "#/components/schemas/Company",
+            "title": "Organization.company"
+          },
+          "name": {
+            "type": "string",
+            "title": "Organization.name"
+          },
+          "parent": {
+            "type": "string",
+            "title": "Organization.parent"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Organization.createdAt"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Organization.updatedAt"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "createdAt"
+        ],
+        "additionalProperties": false,
+        "title": "Organization"
+      },
       "Company": {
         "properties": {
           "id": {
@@ -71,45 +165,6 @@
         ],
         "additionalProperties": false,
         "title": "Company",
-        "type": "object"
-      },
-      "Organization": {
-        "properties": {
-          "id": {
-            "title": "Organization.id",
-            "type": "string",
-            "format": "uuid"
-          },
-          "company": {
-            "$ref": "#/components/schemas/Company",
-            "title": "Organization.company"
-          },
-          "name": {
-            "title": "Organization.name",
-            "type": "string"
-          },
-          "parent": {
-            "title": "Organization.parent",
-            "type": "string"
-          },
-          "createdAt": {
-            "title": "Organization.createdAt",
-            "type": "string",
-            "format": "date-time"
-          },
-          "updatedAt": {
-            "title": "Organization.updatedAt",
-            "type": "string",
-            "format": "date-time"
-          }
-        },
-        "required": [
-          "id",
-          "name",
-          "createdAt"
-        ],
-        "additionalProperties": false,
-        "title": "Organization",
         "type": "object"
       },
       "People": {
