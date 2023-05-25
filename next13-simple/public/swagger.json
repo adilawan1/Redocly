@@ -4,32 +4,45 @@
     "title": "Next Swagger API Example",
     "version": "1.0"
   },
+  "servers": [
+    {
+      "url": "https://redocly.vercel.app"
+    }
+  ],
   "paths": {
-    "/api/hello": {
-      "get": {
-        "description": "Returns the hello world",
+    "/api/cancel": {
+      "patch": {
+        "description": "Cancels an order",
         "responses": {
           "200": {
-            "description": "hello world"
+            "description": "Cancels an order"
           }
         }
       }
     },
-    "/api/organization": {
-      "get": {
-        "tags": [
-          "Organization"
-        ],
+    "/api/create": {
+      "post": {
+        "description": "Creates an order",
         "responses": {
           "200": {
-            "description": "Organization",
+            "description": "Creates an order"
+          }
+        }
+      }
+    },
+    "/api/order": {
+      "get": {
+        "description": "Returns an order",
+        "responses": {
+          "200": {
+            "description": "Returns an order",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "array",
                   "items": {
                     "type": "object",
-                    "$ref": "#/components/schemas/Organization"
+                    "$ref": "#/components/schemas/order"
                   }
                 }
               }
@@ -38,30 +51,57 @@
         }
       }
     },
-    "openapi": {
-      "0": "3",
-      "1": ".",
-      "2": "0",
-      "3": ".",
-      "4": "0"
+    "/api/orders": {
+      "get": {
+        "description": "Returns all the orders",
+        "responses": {
+          "200": {
+            "description": "Returns all the orders"
+          }
+        }
+      }
     },
-    "info": {
-      "title": "Converted from people.swagger.yaml with typeconv",
-      "version": "1",
-      "x-id": "people.swagger.yaml",
-      "x-comment": "Generated from models/people.ts by core-types-json-schema (https://github.com/grantila/core-types-json-schema) on behalf of typeconv (https://github.com/grantila/typeconv)"
+    "/api/update": {
+      "patch": {
+        "description": "Updates an order",
+        "responses": {
+          "200": {
+            "description": "Updates an order"
+          }
+        }
+      }
     }
   },
   "components": {
     "schemas": {
-      "Company": {
+      "Order": {
+        "type": "object",
         "properties": {
           "id": {
-            "title": "Company.id",
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "order": {
+        "properties": {
+          "id": {
+            "title": "order.id",
             "type": "string"
           },
           "name": {
-            "title": "Company.name",
+            "title": "order.name",
+            "type": "string"
+          },
+          "createdAt": {
+            "title": "order.createdAt",
             "type": "string"
           }
         },
@@ -71,80 +111,6 @@
         ],
         "additionalProperties": false,
         "title": "Company",
-        "type": "object"
-      },
-      "Organization": {
-        "properties": {
-          "id": {
-            "title": "Organization.id",
-            "type": "string",
-            "format": "uuid"
-          },
-          "company": {
-            "$ref": "#/components/schemas/Company",
-            "title": "Organization.company"
-          },
-          "name": {
-            "title": "Organization.name",
-            "type": "string"
-          },
-          "parent": {
-            "title": "Organization.parent",
-            "type": "string"
-          },
-          "createdAt": {
-            "title": "Organization.createdAt",
-            "type": "string",
-            "format": "date-time"
-          },
-          "updatedAt": {
-            "title": "Organization.updatedAt",
-            "type": "string",
-            "format": "date-time"
-          }
-        },
-        "required": [
-          "id",
-          "name",
-          "createdAt"
-        ],
-        "additionalProperties": false,
-        "title": "Organization",
-        "type": "object"
-      },
-      "People": {
-        "properties": {
-          "id": {
-            "title": "People.id",
-            "type": "string"
-          },
-          "name": {
-            "title": "People.name",
-            "type": "string"
-          },
-          "phone": {
-            "title": "People.phone",
-            "type": "string"
-          },
-          "address": {
-            "title": "People.address",
-            "type": "string"
-          },
-          "age": {
-            "title": "People.age",
-            "type": "number"
-          },
-          "company": {
-            "$ref": "#/components/schemas/Company",
-            "title": "People.company"
-          }
-        },
-        "required": [
-          "id",
-          "name"
-        ],
-        "additionalProperties": false,
-        "title": "People",
         "type": "object"
       }
     }

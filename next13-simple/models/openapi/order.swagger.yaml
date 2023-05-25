@@ -1,0 +1,19 @@
+components:
+  schemas:
+    order:
+      properties:
+        id:
+          title: order.id
+          type: string
+        name:
+          title: order.name
+          type: string
+        createdAt:
+          title: order.createdAt
+          type: string
+      required:
+        - id
+        - name
+      additionalProperties: false
+      title: Company
+      type: object
